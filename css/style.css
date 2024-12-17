@@ -102,22 +102,25 @@
 }
 .side-bar ul li {
 	font-size: 16px;
-	padding: 15px 0px;
 	padding-left: 20px;
-	transition: 500ms background;
+	transition: 500ms;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	margin-top: 5px;
 }
 .side-bar ul li:hover {
 	background: #127b8e;
 }
 
 .side-bar ul li a {
+	padding: 15px 0px;
+	display: flex;
 	text-decoration: none;
 	color: #eee;
 	cursor: pointer;
 	letter-spacing: 1px;
+	width: 100%;
 }
 .side-bar .active a {
 	color: #127b8e !important;
@@ -168,6 +171,10 @@
 }
 .section-1 .title {
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
 }
 .section-1 .title a{
 	text-decoration: none;
@@ -182,7 +189,7 @@
 	cursor: pointer;
 	outline: none;
 	transition: background 1s;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.19);
 }
 
 .section-1 .title-2 {
@@ -302,18 +309,29 @@
 	margin-bottom: 10px;
 }
 .dashboard {
-	display: flex;
-	max-width: 650px;
-	width: 95%;
-	justify-content: space-between;
-	flex-wrap: wrap;
+	display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    width: 100%;
+    gap: 10px;
+}
+@media (max-width:847px) {
+	.dashboard {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 .dashboard-item {
     text-align: center;
     background: #262931;
-    width: 200px;
-    padding: 30px 5px;
-    margin-bottom: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 20px;
+    min-height: 140px;
+	box-shadow: 2px 2px 7px #999;
 }
 .dashboard-item i{
 	display: block;

@@ -14,7 +14,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
     <head>
         <title>Test Management</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css?v=<?php echo time();?>">
         <style>
             /* Custom Styles for Status Colors */
             .status {

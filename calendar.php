@@ -15,7 +15,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <title>Task Calendar</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -170,7 +170,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
             }
 
             .calendar-dates li.active {
-                background-color: #6332c5;
+                background-color: #6cbbd4 !important;
                 color: #222;
             }
 
@@ -219,7 +219,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
             footer a:hover {
                 text-decoration: underline;
             }
-            #TasksData{
+            .Space{
                 width:100%;
                 height: 15px;
                 display: flex;
@@ -227,7 +227,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
                 align-items:center;
                 justify-content:center;
             }
-            #TasksData div{
+            .Space div{
                 height: 10px;
                 width: 10px;
                 border-radius:50%;
@@ -261,7 +261,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 
                 for (let i = 1; i <= lastdate; i++) {
                     let isToday = i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "active" : "";
-                    lit += `<li class="${isToday}" data-date="${year}-${month+1}-${i.toString().padStart(2, '0')}" ><div id='TasksData'></div><br>${i}</li>`;
+                    lit += `<li class="${isToday}" data-date="${year}-${month+1}-${i.toString().padStart(2, '0')}" ><div id='TasksData' class='Space'></div><br>${i}<br><div class='Space'></div></li>`;
                 }
 
                 for (let i = dayend; i < 6; i++) {
