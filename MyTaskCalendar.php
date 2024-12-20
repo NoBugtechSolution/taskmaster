@@ -307,12 +307,15 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                         tasks.forEach(task => {
                             if (task.due_date === taskDate) {
                                 let div=document.createElement('div')
-                                if(task[5]=='completed'){
-                                    div.style.backgroundColor='#22ee22'
+                                if(task['status']=='Completed'){
+                                    div.style.backgroundColor='#40c210'
                                     
-                                }else if(task[5]=='in_progress'){
+                                }else if(task['status']=='In Progress'){
                                     div.style.backgroundColor='orange'
-                                }else{
+                                }else if(task['status']=='Bugs Founded'){
+                                    div.style.backgroundColor='#eeee00'
+                                }
+                                else{
                                     div.style.backgroundColor='red'
                                 }
                                 dateElement.style.backgroundColor = "#eee"; 

@@ -18,11 +18,11 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
         <style>
             /* Custom Styles for Status Colors */
             .status {
-                padding: 5px 10px;
-                border-radius: 5px;
+                padding:10px;
+                border-radius:5px;
+                font-weight: 500;
+                width: 100%;
                 color: white;
-                text-align: center;
-                font-weight: bold;
             }
 
             .status.developed {
@@ -31,12 +31,13 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
             }
 
             .status.testing {
-                background-color: #ffc107;
+                background-color: #efef05;
+                color:black;
                 /* Yellow */
             }
 
             .status.bug {
-                background-color: #dc3545;
+                background-color: orange;
                 /* Red */
             }
 
@@ -68,8 +69,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                             <th>Description</th>
                             <th>Dev Comments</th>
                             <th>Tester Comments</th>
-                            <th>Test Status</th>
                             <th>Created At</th>
+                            <th>Test Status</th>
                             <th>Action</th>
                         </tr>
                         <?php $i = 0;
@@ -81,13 +82,12 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                                 <td><?= $test['description'] ?></td>
                                 <td><?= $test['DeveloperComments'] ?></td>
                                 <td><?= $test['TesterComments'] ?></td>
-                                <td>
-                                    <span class="status <?= strtolower($test['test_status']); ?>">
-                                        <?= $test['test_status'] ?>
-                                    </span>
-                                </td>
                                 <td><?= $test['created_at'] ?></td>
-
+                                <td style='width:200px'>
+                                    <div class="status <?= strtolower($test['test_status']); ?>">
+                                        <?= $test['test_status'] ?>
+                                    </div>
+                                </td>
                                 <td>
                                     <a href="edit-test.php?id=<?= $test['id'] ?>" class="edit-btn">Edit</a>
                                     <!-- Add delete or other actions here if needed -->

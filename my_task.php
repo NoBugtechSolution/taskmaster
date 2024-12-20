@@ -35,18 +35,18 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 					<th>Project Name</th>
 					<th>Task Title</th>
 					<th>Description</th>
-					<th>Status</th>
 					<th>Due Date</th>
+					<th>Status</th>
 					<th>Action</th>
 				</tr>
 				<?php $i=0; foreach ($tasks as $task) { ?>
 				<tr>
 					<td><?=++$i?></td>
 					<td><?=$task['ProjectName']?></td>
-					<td><?=$task['title']?></td>
-					<td><?=$task['description']?></td>
-					<td><?=ucwords(str_replace('_', ' ', strtolower($task['status'])));?></td>
+					<td style='max-width:300px'><?=$task['title']?></td>
+					<td style='max-width:300px'><?=$task['description']?></td>
 	            	<td><?=$task['due_date']?></td>
+					<td style='width:250px'><div class='StatusInc <?=str_replace(" ","_",$task['status'])?>'><?=$task['status'];?></div></td>
 
 					<td>
 						<a href="edit-task-employee.php?id=<?=$task['id']?>" class="edit-btn">Edit</a>

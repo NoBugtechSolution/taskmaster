@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2024 at 01:23 PM
+-- Generation Time: Dec 20, 2024 at 05:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,8 @@ CREATE TABLE `bug_reports` (
 --
 
 INSERT INTO `bug_reports` (`bug_id`, `tester_name`, `ProjectID`, `bug_title`, `bug_description`, `bug_url`, `bug_status`, `reported_date`, `remarks_by_tester`, `Priority`) VALUES
-(3, 'vishalvnair124', 1, 'Test Error', 'newfdu', 'asdg', 'New', '2024-12-20 11:23:57', 'adatsdy', 0);
+(4, 'abhinm', 1, 'Light Blinking', 'There is a re light blink in the left top corner when i press a button...', '', 'New', '2024-12-20 15:22:58', 'There is a re light blink in the left top corner when i press a button...', 0),
+(5, 'abhinm', 2, 'Upload Error', 'When i update a image the page not responding and after a while it automatically closes and image will not be uploaded.', '', 'New', '2024-12-20 16:03:26', '', 0);
 
 -- --------------------------------------------------------
 
@@ -76,12 +77,12 @@ INSERT INTO `notifications` (`id`, `message`, `recipient`, `type`, `date`, `is_r
 (7, '\'Update client database\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 1),
 (8, '\'Fix server downtime issue\' has been assigned to you. Please review and start working on it', 2, 'New Task Assigned', '2024-09-06', 0),
 (9, '\'Plan annual marketing strategy\' has been assigned to you. Please review and start working on it', 2, 'New Task Assigned', '2024-09-06', 0),
-(10, '\'Onboard new employees\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 0),
+(10, '\'Onboard new employees\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 1),
 (11, '\'Design new company website\' has been assigned to you. Please review and start working on it', 2, 'New Task Assigned', '2024-09-06', 0),
-(12, '\'Conduct software testing\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 0),
+(12, '\'Conduct software testing\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 1),
 (13, '\'Schedule team meeting\' has been assigned to you. Please review and start working on it', 2, 'New Task Assigned', '2024-09-06', 0),
-(14, '\'Prepare budget for Q4\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 0),
-(15, '\'Write blog post on industry trend\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 0),
+(14, '\'Prepare budget for Q4\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 1),
+(15, '\'Write blog post on industry trend\' has been assigned to you. Please review and start working on it', 7, 'New Task Assigned', '2024-09-06', 1),
 (16, '\'Renew software license\' has been assigned to you. Please review and start working on it', 2, 'New Task Assigned', '2024-09-06', 0);
 
 -- --------------------------------------------------------
@@ -125,7 +126,7 @@ CREATE TABLE `ready_for_testing` (
 --
 
 INSERT INTO `ready_for_testing` (`id`, `task_id`, `test_status`, `DeveloperComments`, `TesterComments`, `created_at`, `status`) VALUES
-(3, 29, 'testing', 'Ready to test this feature', '', '2024-12-20 11:59:38', 1);
+(3, 29, 'Developed', 'Ready to test this feature', 'Almost Everthing is okay!!', '2024-12-20 11:59:38', 1);
 
 -- --------------------------------------------------------
 
@@ -140,7 +141,7 @@ CREATE TABLE `tasks` (
   `description` text DEFAULT NULL,
   `assigned_to` int(11) DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `status` enum('pending','bugs_founded','in_progress','completed') DEFAULT 'pending',
+  `status` enum('Pending','Bugs Founded','In Progress','Completed') DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `Priority` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -150,19 +151,19 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `ProjectID`, `title`, `description`, `assigned_to`, `due_date`, `status`, `created_at`, `Priority`) VALUES
-(28, 1, 'Prepare End-of-Year Financial Report', 'Compile financial data for the entire year and prepare the annual report.', 7, '2024-12-05', 'in_progress', '2024-12-01 02:45:30', 1),
-(29, 2, 'Organize Team Holiday Party', 'Plan and schedule the team holiday celebration, including venue and catering.', 2, '2024-12-10', 'completed', '2024-12-01 02:50:10', 2),
-(30, 1, 'Launch Winter Marketing Campaign', 'Coordinate the launch of the new seasonal marketing strategy.', 7, '2024-12-07', 'completed', '2024-12-02 03:40:50', 3),
-(31, 1, 'Client Meeting for Project Review', 'Discuss progress and next steps with the client.', 2, '2024-12-12', 'pending', '2024-12-02 04:15:10', 4),
-(33, 1, 'Prepare Q1 Strategy Presentation', 'Draft a presentation outlining objectives and strategies for Q1 2025.', 2, '2024-12-08', 'pending', '2024-12-03 05:00:45', 5),
-(34, 1, 'Software Upgrade Testing', 'Test the new features of the updated software.', 7, '2024-12-10', 'pending', '2024-12-04 05:30:30', 6),
-(35, 2, 'Backup All Company Data', 'Ensure all digital assets and data are backed up before the holiday break.', 7, '2024-12-13', 'pending', '2024-12-04 06:00:00', 7),
-(36, 1, 'Submit Tax Documents', 'Prepare and submit all necessary tax-related documents.', 2, '2024-12-14', 'in_progress', '2024-12-05 03:20:20', 8),
-(38, 2, 'Server Maintenance', 'Perform maintenance on all servers to ensure smooth operations.', 2, '2024-12-09', 'in_progress', '2024-12-06 04:10:20', 9),
-(39, 1, 'Review Supplier Contracts', 'Analyze supplier agreements and suggest updates for the upcoming year.', 7, '2024-12-11', 'pending', '2024-12-06 04:50:50', 10),
-(40, 1, 'Design New Brochure', 'Create a design draft for the new product brochure.', 2, '2024-12-14', 'pending', '2024-12-06 05:35:30', 11),
-(41, 1, 'Train New Interns', 'Conduct orientation sessions for the newly joined interns.', 7, '2024-12-12', 'in_progress', '2024-12-07 03:55:45', 12),
-(42, 1, 'Update Project Timeline', 'Revise the timelines for ongoing projects for better tracking.', 2, '2024-12-08', 'completed', '2024-12-07 04:20:10', 13);
+(28, 1, 'Prepare End-of-Year Financial Report', 'Compile financial data for the entire year and prepare the annual report.', 7, '2024-12-05', 'Bugs Founded', '2024-12-01 02:45:30', 1),
+(29, 2, 'Organize Team Holiday Party', 'Plan and schedule the team holiday celebration, including venue and catering.', 2, '2024-12-10', 'Completed', '2024-12-01 02:50:10', 2),
+(30, 1, 'Launch Winter Marketing Campaign', 'Coordinate the launch of the new seasonal marketing strategy.', 7, '2024-12-07', 'Completed', '2024-12-02 03:40:50', 3),
+(31, 1, 'Client Meeting for Project Review', 'Discuss progress and next steps with the client.', 2, '2024-12-12', 'Pending', '2024-12-02 04:15:10', 4),
+(33, 1, 'Prepare Q1 Strategy Presentation', 'Draft a presentation outlining objectives and strategies for Q1 2025.', 2, '2024-12-08', 'Pending', '2024-12-03 05:00:45', 5),
+(34, 1, 'Software Upgrade Testing', 'Test the new features of the updated software.', 7, '2024-12-10', 'In Progress', '2024-12-04 05:30:30', 6),
+(35, 2, 'Backup All Company Data', 'Ensure all digital assets and data are backed up before the holiday break.', 7, '2024-12-13', 'Pending', '2024-12-04 06:00:00', 7),
+(36, 1, 'Submit Tax Documents', 'Prepare and submit all necessary tax-related documents.', 2, '2024-12-14', 'Pending', '2024-12-05 03:20:20', 8),
+(38, 2, 'Server Maintenance', 'Perform maintenance on all servers to ensure smooth operations.', 2, '2024-12-09', 'Pending', '2024-12-06 04:10:20', 9),
+(39, 1, 'Review Supplier Contracts', 'Analyze supplier agreements and suggest updates for the upcoming year.', 7, '2024-12-11', 'Pending', '2024-12-06 04:50:50', 10),
+(40, 1, 'Design New Brochure', 'Create a design draft for the new product brochure.', 2, '2024-12-14', 'Pending', '2024-12-06 05:35:30', 11),
+(41, 1, 'Train New Interns', 'Conduct orientation sessions for the newly joined interns.', 7, '2024-12-12', 'Pending', '2024-12-07 03:55:45', 12),
+(42, 1, 'Update Project Timeline', 'Revise the timelines for ongoing projects for better tracking.', 2, '2024-12-08', 'Completed', '2024-12-07 04:20:10', 13);
 
 -- --------------------------------------------------------
 
@@ -241,7 +242,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bug_reports`
 --
 ALTER TABLE `bug_reports`
-  MODIFY `bug_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bug_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `notifications`

@@ -41,8 +41,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                             <th>Project Name</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Status</th>
                             <th>Reported Date</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                         <?php $i = 0;
@@ -51,10 +51,10 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                                 <td><?= ++$i ?></td>
                                 <td><?= $bug['ProjectName'] ?></td>
                                 <td><?= $bug['bug_title'] ?></td>
-                                <td><?= $bug['bug_description'] ?></td>
-                                <td><?= $bug['bug_status'] ?></td>
+                                <td style='max-width:350px'><?= $bug['bug_description'] ?></td>
                                 <td><?= $bug['reported_date'] ?></td>
-                                <td>
+                                <td style='width:250px'><div class='StatusInc <?=str_replace(" ","_",$bug['bug_status'])?>'><?= $bug['bug_status'] ?></div></td>
+                                <td style='width:160px'>
                                     <a href="edit_bug.php?id=<?= $bug['bug_id'] ?>" class="edit-btn">Edit</a>
                                     <a href="delete_bug.php?id=<?= $bug['bug_id'] ?>" class="delete-btn">Delete</a>
                                 </td>

@@ -62,10 +62,10 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 						<lable id="Header">Status</lable>
 						<textarea name="devComment" id="devComment" class="input-1" style='display:none' rows="10" placeholder='Developer Comment'></textarea>
 						<select name="status" class="input-1" id='StatusSelect'>
-							<option <?php if ($task['status'] == "pending") echo "selected"; ?> value="pending">Pending</option>
-							<option <?php if ($task['status'] == "in_progress") echo "selected"; ?> value="in_progress">In Progress</option>
-							<option <?php if ($task['status'] == "completed") echo "selected"; ?> value="completed">Completed</option>
-							<option <?php if ($task['status'] == "bugs_founded") echo "selected"; ?> value="bugs_founded">Bugs Reported</option>
+							<option <?php if ($task['status'] == "Pending") echo "selected"; ?> value="Pending">Pending</option>
+							<option <?php if ($task['status'] == "In Progress") echo "selected"; ?> value="In Progress">In Progress</option>
+							<option <?php if ($task['status'] == "Completed") echo "selected"; ?> value="Completed">Completed</option>
+							<option <?php if ($task['status'] == "Bugs Founded") echo "selected"; ?> value="Bugs Founded">Bugs Founded</option>
 
 						</select><br>
 					</div>

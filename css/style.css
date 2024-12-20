@@ -208,7 +208,6 @@
 	cursor: pointer;
 	outline: none;
 	transition: background 1s;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .section-1 .title-2 .btn:hover{
 	opacity: .6;
@@ -233,7 +232,7 @@
   padding: 7px;
 }
 .main-table {
-	width: 98%;
+	width: 100%;
 	margin-top: 30px;
 }
 
@@ -251,7 +250,6 @@
 	cursor: pointer;
 	outline: none;
 	transition: background 1s;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .delete-btn:hover{
 	opacity: .6;
@@ -270,7 +268,38 @@
 	cursor: pointer;
 	outline: none;
 	transition: background 1s;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.StatusInc{
+	padding:10px;
+	border-radius:5px;
+	font-weight: 500;
+}
+.StatusInc.In_Progress{
+	background-color: #efef05;
+}
+.StatusInc.Pending{
+	background-color: red;
+	color: white;
+}
+.StatusInc.Completed{
+	background-color: #40c210;
+	color: white;
+}
+.StatusInc.Bugs_Founded{
+	background-color: orange;
+	color: white;
+}
+.StatusInc.New{
+	background-color: red;
+	color:white;
+}
+.StatusInc.Resolved{
+	background-color: #40c210;
+	color: white;
+}
+.StatusInc.Closed{
+	background-color: orange;
+	color: white;
 }
 .edit-btn:hover{
 	opacity: .6;
