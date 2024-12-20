@@ -53,8 +53,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                                 <td><?= $bug['bug_title'] ?></td>
                                 <td style='max-width:350px'><?= $bug['bug_description'] ?></td>
                                 <td><?= $bug['reported_date'] ?></td>
-                                <td style='width:250px'><div class='StatusInc <?=str_replace(" ","_",$bug['bug_status'])?>'><?= $bug['bug_status'] ?></div></td>
-                                <td style='width:160px'>
+                                <td style='max-width:250px;min-width:150px;'><div class='StatusInc <?=str_replace(" ","_",$bug['bug_status'])?>'><?= $bug['bug_status'] ?></div></td>
+                                <td style='max-width:160px'>
                                     <a href="edit_bug.php?id=<?= $bug['bug_id'] ?>" class="edit-btn">Edit</a>
                                     <a href="delete_bug.php?id=<?= $bug['bug_id'] ?>" class="delete-btn">Delete</a>
                                 </td>
