@@ -63,8 +63,11 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                     <table class="main-table">
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
+                            <th>Project Name</th>
+                            <th>Feature Title</th>
                             <th>Description</th>
+                            <th>Dev Comments</th>
+                            <th>Tester Comments</th>
                             <th>Test Status</th>
                             <th>Created At</th>
                             <th>Action</th>
@@ -73,8 +76,11 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                         foreach ($tests as $test) { ?>
                             <tr>
                                 <td><?= ++$i ?></td>
+                                <td><?= $test['ProjectName'] ?></td>
                                 <td><?= $test['title'] ?></td>
                                 <td><?= $test['description'] ?></td>
+                                <td><?= $test['DeveloperComments'] ?></td>
+                                <td><?= $test['TesterComments'] ?></td>
                                 <td>
                                     <span class="status <?= strtolower($test['test_status']); ?>">
                                         <?= $test['test_status'] ?>
@@ -97,7 +103,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
         </div>
 
         <script type="text/javascript">
-            var active = document.querySelector("#navList li:nth-child(2)");
+            var active = document.querySelector("#navList li:nth-child(5)");
             active.classList.add("active");
         </script>
 

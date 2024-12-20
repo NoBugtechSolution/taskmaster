@@ -4,6 +4,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
     include "DB_connection.php";
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $projectID = $_POST['project'];
         $tester_name = $_SESSION['username']; // Assume the session holds the username
         $bug_title = $_POST['bug_title'];
         $bug_description = $_POST['bug_description'];
@@ -12,14 +13,22 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
         $remarks_by_tester = $_POST['remarks_by_tester'];
 
         // Insert bug into the database
-        $query = "INSERT INTO bug_reports (tester_name, bug_title, bug_description, bug_url, bug_status, remarks_by_tester)
-                  VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO bug_reports (ProjectID,tester_name, bug_title, bug_description, bug_url, bug_status, remarks_by_tester)
+                  VALUES (?,?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->execute([$tester_name, $bug_title, $bug_description, $bug_url, $bug_status, $remarks_by_tester]);
+        $stmt->execute([$projectID,$tester_name, $bug_title, $bug_description, $bug_url, $bug_status, $remarks_by_tester]);
 
         header("Location: bugs.php?success=Bug reported successfully");
         exit();
     }
+    function getProjects($conn){
+        $sql="SELECT * FROM `projects`";
+        $data=$conn->prepare($sql);
+        $data->execute();
+        $value=$data->fetchAll(PDO::FETCH_ASSOC);
+        return $value?:[];
+    }
+    $ProjectsDetails=getProjects($conn);
 ?>
 
     <!DOCTYPE html>
@@ -39,6 +48,13 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
             <section class="section-1">
                 <h4 class="title">Report a Bug</h4>
                 <form action="report_bug.php" method="POST">
+                    <label for="bug_title">Project</label>
+                    <select name="project" id="">
+                        <?php foreach($ProjectsDetails as $Project){ ?>
+                        <option value="<?= $Project['ProjectID']; ?>"><?= $Project['ProjectName']; ?></option>
+                        <?php } ?>
+                    </select>
+
                     <label for="bug_title">Bug Title</label>
                     <input type="text" id="bug_title" name="bug_title" required>
 
@@ -180,7 +196,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
             }
         </style>
         <script type="text/javascript">
-            var active = document.querySelector("#navList li:nth-child(4)"); // Adjust active navigation link
+            var active = document.querySelector("#navList li:nth-child(6)"); // Adjust active navigation link
             active.classList.add("active");
         </script>
     </body>

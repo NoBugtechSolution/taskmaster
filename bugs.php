@@ -38,6 +38,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                     <table class="main-table">
                         <tr>
                             <th>#</th>
+                            <th>Project Name</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -48,6 +49,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                         foreach ($bugs as $bug) { ?>
                             <tr>
                                 <td><?= ++$i ?></td>
+                                <td><?= $bug['ProjectName'] ?></td>
                                 <td><?= $bug['bug_title'] ?></td>
                                 <td><?= $bug['bug_description'] ?></td>
                                 <td><?= $bug['bug_status'] ?></td>
@@ -84,7 +86,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
             }
         </style>
         <script type="text/javascript">
-            var active = document.querySelector("#navList li:nth-child(3)"); // Adjust active navigation link
+            var active = document.querySelector("#navList li:nth-child(6)"); // Adjust active navigation link
             active.classList.add("active");
         </script>
 

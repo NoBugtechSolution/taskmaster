@@ -22,12 +22,17 @@ if (isset($_POST['id']) && isset($_POST['status']) && $_SESSION['role'] == 'empl
 	}else {
     
        include "Model/Task.php";
-
-       $data = array($status, $id);
-       update_task_status($conn, $data);
-
-       $em = "Task updated successfully";
-	    header("Location: ../edit-task-employee.php?success=$em&id=$id");
+		if(isset($_POST['update'])){
+			$data = array($status, $id);
+			update_task_status($conn, $data);
+			$em = "Task updated successfully";
+		}else{
+			$comment=$_POST['devComment'];
+			$data=array($id,"testing",$comment);
+			create_Test($conn, $data);
+			$em = "Added To Testing";
+		}
+	    header("Location: ../my_task.php?success=$em");
 	    exit();
 
     

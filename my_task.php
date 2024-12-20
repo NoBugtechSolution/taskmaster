@@ -32,7 +32,8 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 			<table class="main-table">
 				<tr>
 					<th>#</th>
-					<th>Title</th>
+					<th>Project Name</th>
+					<th>Task Title</th>
 					<th>Description</th>
 					<th>Status</th>
 					<th>Due Date</th>
@@ -41,10 +42,11 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 				<?php $i=0; foreach ($tasks as $task) { ?>
 				<tr>
 					<td><?=++$i?></td>
+					<td><?=$task['ProjectName']?></td>
 					<td><?=$task['title']?></td>
 					<td><?=$task['description']?></td>
-					<td><?=$task['status']?></td>
-	            <td><?=$task['due_date']?></td>
+					<td><?=ucwords(str_replace('_', ' ', strtolower($task['status'])));?></td>
+	            	<td><?=$task['due_date']?></td>
 
 					<td>
 						<a href="edit-task-employee.php?id=<?=$task['id']?>" class="edit-btn">Edit</a>

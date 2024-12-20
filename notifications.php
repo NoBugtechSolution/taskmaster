@@ -54,7 +54,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
 
 
 <script type="text/javascript">
-	var active = document.querySelector("#navList li:nth-child(4)");
+	var active = document.querySelector("#navList li:nth-child(7)");
 	active.classList.add("active");
 
 

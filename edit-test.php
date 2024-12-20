@@ -22,9 +22,9 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
     // Handle form submission for updating test status
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $test_status = $_POST['test_status'];
-
+        $TestComment = $_POST['TestComment'];
         // Update the test status in the database
-        update_test_status($conn, $test_id, $test_status);
+        update_test_status($conn, $test_id, $test_status,$TestComment);
 
         header("Location: test_management.php?success=Test status updated successfully");
         exit();
@@ -61,7 +61,10 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                     <div class="input-holder">
                         <p><b>Description: </b><?= $test['description'] ?></p>
                     </div>
-                    <div class="input-holder">
+                    <div class="input-holder" style='margin-top:20px;'>
+                    <label for="test_status" >Add your Tester Comments:</label>
+                    <textarea name="TestComment" id="" class="input-1" rows='5'placeholder='Tester Comments'><?=$test['TesterComments'];?></textarea>    
+                    <br>
                         <label for="test_status">Test Status:</label>
                         <select name="test_status" class="input-1">
                             <option <?php if ($test['test_status'] == "Developed") echo "selected"; ?>>Developed</option>
@@ -78,7 +81,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
         </div>
 
         <script type="text/javascript">
-            var active = document.querySelector("#navList li:nth-child(2)");
+            var active = document.querySelector("#navList li:nth-child(5)");
             active.classList.add("active");
         </script>
         <style>

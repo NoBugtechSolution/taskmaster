@@ -24,6 +24,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) ) {
 	     $completed = count_my_completed_tasks($conn, $_SESSION['id']);
 
 	}
+	
  ?>
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) ) {
 	<div class="body">
 		<?php include "inc/nav.php" ?>
 		<section class="section-1">
+			<?php include("Common/Warning.php");?>
 			<?php if ($_SESSION['role'] == "admin") { ?>
 				<div class="dashboard">
 					<div class="dashboard-item">

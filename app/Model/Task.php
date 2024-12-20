@@ -2,18 +2,20 @@
 
 function get_ready_for_testing_by_id($conn, $id)
 {
-	$sql = "SELECT * FROM ready_for_testing WHERE id = :id";
+	$sql = "SELECT ready_for_testing.*,tasks.title,tasks.description FROM ready_for_testing
+	INNER JOIN tasks ON tasks.id=ready_for_testing.task_id WHERE ready_for_testing.id = :id";
 	$stmt = $conn->prepare($sql);
 	$stmt->bindParam(':id', $id);
 	$stmt->execute();
 	return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function update_test_status($conn, $id, $test_status)
+function update_test_status($conn, $id, $test_status,$TestComment)
 {
-	$sql = "UPDATE ready_for_testing SET test_status = :test_status WHERE id = :id";
+	$sql = "UPDATE ready_for_testing SET test_status = :test_status, TesterComments=:TesterComments WHERE id = :id";
 	$stmt = $conn->prepare($sql);
 	$stmt->bindParam(':id', $id);
+	$stmt->bindParam(':TesterComments', $TestComment);
 	$stmt->bindParam(':test_status', $test_status);
 	$stmt->execute();
 }
@@ -31,7 +33,10 @@ function delete_test($conn, $id)
 function get_all_ready_for_testing($conn)
 {
 	// Remove the WHERE clause filtering by user_id
-	$sql = "SELECT * FROM ready_for_testing ORDER BY created_at DESC";
+	$sql = "SELECT ready_for_testing.*,tasks.title,tasks.description,projects.ProjectName FROM ready_for_testing
+	INNER JOIN tasks ON tasks.id=ready_for_testing.task_id
+    INNER JOIN projects ON projects.ProjectID=tasks.ProjectID
+ 	ORDER BY ready_for_testing.created_at DESC";
 	$stmt = $conn->prepare($sql);
 	$stmt->execute();
 	return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -169,9 +174,16 @@ function update_task_status($conn, $data)
 }
 
 
+function create_Test($conn, $data){
+	$sql="INSERT INTO `ready_for_testing`(`task_id`, `test_status`, `DeveloperComments`) VALUES (?,?,?)";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute($data);
+}
+
+
 function get_all_tasks_by_id($conn, $id)
 {
-	$sql = "SELECT * FROM tasks WHERE assigned_to=?";
+	$sql = "SELECT * FROM tasks INNER JOIN projects ON projects.ProjectID=tasks.ProjectID WHERE assigned_to=?";
 	$stmt = $conn->prepare($sql);
 	$stmt->execute([$id]);
 

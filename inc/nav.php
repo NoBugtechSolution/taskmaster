@@ -23,6 +23,12 @@
 				</a>
 			</li>
 			<li>
+				<a href="MyTaskCalendar.php">
+					<i class="fa fa-tasks" aria-hidden="true"></i>
+					<span>Task Calendar</span>
+				</a>
+			</li>
+			<li>
 				<a href="profile.php">
 					<i class="fa fa-user" aria-hidden="true"></i>
 					<span>Profile</span>

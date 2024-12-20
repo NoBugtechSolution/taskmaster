@@ -5,7 +5,9 @@
 function get_all_bugs($conn)
 {
     // Prepare the SQL query to fetch all bugs
-    $query = "SELECT * FROM bug_reports ORDER BY reported_date DESC"; // You can modify this query as needed
+    $query = "SELECT * FROM bug_reports
+    INNER JOIN projects ON projects.ProjectID=bug_reports.ProjectID 
+    ORDER BY reported_date DESC"; // You can modify this query as needed
     $stmt = $conn->prepare($query);
     $stmt->execute();
 

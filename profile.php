@@ -40,7 +40,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 	</div>
 
 <script type="text/javascript">
-	var active = document.querySelector("#navList li:nth-child(3)");
+	var active = document.querySelector("#navList li:nth-child(4)");
 	active.classList.add("active");
 </script>
 </body>

@@ -326,6 +326,10 @@ if (isset($_SESSION['role']) && isset($_SESSION['id'])) {
                 });
             }
         </script>
+        <script type="text/javascript">
+            var active = document.querySelector("#navList li:nth-child(3)");
+            active.classList.add("active");
+        </script>
     </body>
 
     </html>

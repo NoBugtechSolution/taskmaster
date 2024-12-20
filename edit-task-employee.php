@@ -36,6 +36,7 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 			<section class="section-1">
 				<h4 class="title">Edit Task <a href="my_task.php">Tasks</a></h4>
 				<form class="form-1"
+				name='TheForm'
 					method="POST"
 					action="app/update-task-employee.php">
 					<?php if (isset($_GET['error'])) { ?>
@@ -58,18 +59,19 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 						<p><b>Description: </b><?= $task['description'] ?></p>
 					</div><br>
 					<div class="input-holder">
-						<lable>Status</lable>
-						<select name="status" class="input-1">
-							<option <?php if ($task['status'] == "pending") echo "selected"; ?>>pending</option>
-							<option <?php if ($task['status'] == "in_progress") echo "selected"; ?>>in_progress</option>
-							<option <?php if ($task['status'] == "completed") echo "selected"; ?>>completed</option>
-							<option <?php if ($task['status'] == "bugs_founded") echo "selected"; ?>>bugs_founded</option>
+						<lable id="Header">Status</lable>
+						<textarea name="devComment" id="devComment" class="input-1" style='display:none' rows="10" placeholder='Developer Comment'></textarea>
+						<select name="status" class="input-1" id='StatusSelect'>
+							<option <?php if ($task['status'] == "pending") echo "selected"; ?> value="pending">Pending</option>
+							<option <?php if ($task['status'] == "in_progress") echo "selected"; ?> value="in_progress">In Progress</option>
+							<option <?php if ($task['status'] == "completed") echo "selected"; ?> value="completed">Completed</option>
+							<option <?php if ($task['status'] == "bugs_founded") echo "selected"; ?> value="bugs_founded">Bugs Reported</option>
 
 						</select><br>
 					</div>
 					<input type="text" name="id" value="<?= $task['id'] ?>" hidden>
-
-					<button class="edit-btn">Update</button>
+					<button class="edit-btn" id="SwitchBox"  onclick="TestingOn()" type='button'>Add To Testing</button>
+					<button class="edit-btn" id="SubmitBox" name='update'>Update</button>
 				</form>
 
 			</section>
@@ -78,6 +80,31 @@ if (isset($_SESSION['role']) && isset($_SESSION['id']) && $_SESSION['role'] == "
 		<script type="text/javascript">
 			var active = document.querySelector("#navList li:nth-child(2)");
 			active.classList.add("active");
+			var test=true;
+			function TestingOn(){
+				Button1=document.getElementById("SubmitBox");
+				Button2=document.getElementById("SwitchBox");
+				TextArea=document.getElementById("devComment");
+				Selector=document.getElementById("StatusSelect");
+				Header=document.getElementById("Header");
+				if(test){
+					Button1.textContent='Add';
+					Button2.textContent='Update Details';
+					TextArea.style.display='flex';
+					Selector.style.display='none';
+					Button1.setAttribute("name", "Testing");
+					Header.textContent="Add Developer Comment";
+					test=false;
+				}else{
+					Button1.textContent='Update';
+					Button2.textContent='Add To Testing';
+					TextArea.style.display='none';
+					Selector.style.display='flex';
+					Header.textContent="Status";
+					Button1.setAttribute("name", "update");
+					test=true;
+				}
+			}
 		</script>
 	</body>
 
