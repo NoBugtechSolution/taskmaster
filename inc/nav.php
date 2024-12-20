@@ -87,6 +87,18 @@
 				</a>
 			</li>
 			<li>
+				<a href="test_management.php">
+					<i class="fa fa-bell" aria-hidden="true"></i>
+					<span>Test management</span>
+				</a>
+			</li>
+			<li>
+				<a href="bugs.php">
+					<i class="fa fa-bell" aria-hidden="true"></i>
+					<span>Bug management</span>
+				</a>
+			</li>
+			<li>
 				<a href="calendar.php">
 					<i class="fa fa-tasks" aria-hidden="true"></i>
 					<span>Tasks Calendar</span>
