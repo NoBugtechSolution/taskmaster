@@ -10,7 +10,7 @@ function get_ready_for_testing_by_id($conn, $id)
 	return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function update_test_status($conn, $id, $test_status,$TestComment)
+function update_test_status($conn, $id, $test_status, $TestComment)
 {
 	$sql = "UPDATE ready_for_testing SET test_status = :test_status, TesterComments=:TesterComments WHERE id = :id";
 	$stmt = $conn->prepare($sql);
@@ -47,7 +47,7 @@ function get_all_ready_for_testing($conn)
 
 function insert_task($conn, $data)
 {
-	$sql = "INSERT INTO tasks (title, description, assigned_to, due_date) VALUES(?,?,?,?)";
+	$sql = "INSERT INTO tasks (title, description, assigned_to, status, due_date) VALUES(?,?,?,?,?)";
 	$stmt = $conn->prepare($sql);
 	$stmt->execute($data);
 }
@@ -174,8 +174,9 @@ function update_task_status($conn, $data)
 }
 
 
-function create_Test($conn, $data){
-	$sql="INSERT INTO `ready_for_testing`(`task_id`, `test_status`, `DeveloperComments`) VALUES (?,?,?)";
+function create_Test($conn, $data)
+{
+	$sql = "INSERT INTO `ready_for_testing`(`task_id`, `test_status`, `DeveloperComments`) VALUES (?,?,?)";
 	$stmt = $conn->prepare($sql);
 	$stmt->execute($data);
 }
